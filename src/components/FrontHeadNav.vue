@@ -16,7 +16,6 @@
         </el-menu-item>
       </el-submenu> 
       <el-menu-item index="3">
-
         <div v-if="user===null">
           <router-link to="/signin" replace:true @click.native="flushCom">Sign In</router-link>
         </div>

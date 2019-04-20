@@ -18,12 +18,44 @@ Vue.use(mavonEditor)
 
 import VueResource from 'vue-resource';
 import storage from './model/storage.js';
-Vue.use(VueResource);
-Vue.http.headers.common['X-Date'] = new Date().getTime().toString();
-if (storage.get('user') != null) {
-  Vue.http.headers.common['token'] = storage.get('user').token;
-}
+// Vue.use(VueResource);
+// Vue.http.headers.common['X-Date'] = new Date().getTime().toString();
+// if (storage.get('user') != null) {
+// Vue.http.headers.common['token'] = storage.get('user').token;
+// }
 
+// import axios from 'axios'
+// import global_ from '@/config/Global'
+// var instance = axios.create({
+//   baseURL: global_.baseURL,
+//   timeout: 1000,
+//   headers: {
+//     'X-Date': new Date().getTime().toString(),
+//   }
+// });
+
+
+// instance.interceptors.request.use(
+//   config => {
+//     const token = storage.get('user').token;
+//     if (token) {
+//       config.headers.Authorization = token;
+//     }
+//     return config
+//   },
+//   error => {
+//     return Promise.reject(error)
+//   }
+// );
+
+
+// Vue.use(instance);
+
+
+
+import api from './api'
+
+Vue.prototype.$api = api; // 将api挂载到vue的原型上
 Vue.config.productionTip = false
 
 import VueDisqus from 'vue-disqus'

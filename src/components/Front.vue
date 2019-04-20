@@ -41,7 +41,6 @@
   import HeadNav from '../components/FrontHeadNav.vue'
   export default {
     name: 'Front',
-
     components: { /*前面的组件名称不能和html标签一样*/
       'v-profile': Profile,
       'v-side-nav': SideNav,
