@@ -2,7 +2,7 @@
  * article模块接口列表
  */
 
-import base from './base'; // 导入接口域名列表
+import global_ from '@/config/Global'; // 导入接口域名列表
 import axios from '@/util/http'; // 导入http中创建的axios实例
 import qs from 'qs'; // 根据需求是否导入qs模块
 
@@ -13,10 +13,8 @@ const auth = {
   signIn(username, pwd) {
 
     var timeStamp = new Date().getTime().toString();
-    console.log(timeStamp)
-    var clientKey = this.username;
+    var clientKey = username;
     var baseString = clientKey + timeStamp;
-    var x = require('crypto')
 
     var Signture = require('crypto')
       .createHmac('md5', global_.SecrectKey)
@@ -24,23 +22,27 @@ const auth = {
       .digest()
       .toString('base64');
 
+    console.log(baseString)
+    console.log(timeStamp)
     console.log(Signture)
+    console.log(require('crypto')
+      .createHmac('md5', global_.SecrectKey)
+      .update(baseString)
+      .digest())
 
-    const options = {
-      method: 'POST',
+    return axios({
+      method: "post",
+      url: global_.BaseUrl + "/auth/signin",
+      data: {
+        'userName': username,
+        'password': pwd
+      },
       headers: {
-        'content-type': 'application/x-www-form-urlencoded',
+        'content-type': 'application/json',
         'Authorization': Signture,
         'X-Date': timeStamp,
-      },
-      data: qs.stringify({
-        'username': username,
-        'password': pwd
-      }),
-      url: base.bd + "/auth/signin"
-    };
-
-    return axios.post(options);
+      }
+    })
   },
 
 }

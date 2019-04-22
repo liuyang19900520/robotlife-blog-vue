@@ -33,8 +33,6 @@
 </template>
 <script>
 import VueMarkdown from "vue-markdown";
-import axios from "axios";
-import global_ from "@/config/Global";
 import VueEventBus from "../model/VueEventBus.js";
 export default {
   name: "BlogCard",
@@ -53,25 +51,13 @@ export default {
   methods: {
     handleSelect() {},
     listBlogs(currentPage, topicId) {
-      var api = global_.BaseUrl + "/blogs/page";
-      var data = new FormData();
       if (currentPage != null) {
         this.pageNo = currentPage;
       }
-      if (topicId != null) {
-        data.set("topicId", topicId);
-      }
-      data.set("pageNo", this.pageNo);
-      data.set("rows", this.rows);
-      // axios.post(api, data).then(
-      //   response => {
-      //     this.blogs = response.body.data;
-      //     this.pageTotal = response.body.pagesTotal;
-      //   },
-      //   function(err) {
-      //     alert("加载博客列表失败");
-      //   }
-      // );
+      this.$api.blog.blogs(this.pageNo, this.rows, topicId).then(res => {
+        this.blogs = res.data.data;
+        this.pageTotal = res.data.pagesTotal;
+      });
     },
     addTags(tagsString) {
       var tagsArray = tagsString.split(",");

@@ -23,21 +23,17 @@ export default {
   },
   methods: {
     signIn() {
-      this.$api.auth.signIn(this.username, this.password).then(
-        response => {
-          if (response.data == "0") {
-            storage.set("user", response.body.data);
-            this.$router.push({
-              path: "/"
-            });
-          } else {
-            alert("Sign In failed. the reason is  " + response.body.data.msg);
-          }
-        },
-        function(err) {
-          alert("失败");
+      this.$api.auth.signIn(this.username, this.password).then(response => {
+        alert(JSON.stringify(response));
+        if (response.data.ret == "0") {
+          storage.set("user", response.data.data);
+          this.$router.push({
+            path: "/"
+          });
+        } else {
+          alert("Sign In failed. the reason is  " + response.body.data.msg);
         }
-      );
+      });
     }
   }
 };

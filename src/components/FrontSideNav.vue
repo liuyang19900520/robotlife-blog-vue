@@ -35,7 +35,6 @@
 
 <script>
 import VueEventBus from "../model/VueEventBus.js";
-import global_ from "@/config/Global";
 export default {
   name: "SideNav",
   data() {
@@ -46,23 +45,14 @@ export default {
   },
   methods: {
     handleOpen(key, keyPath) {
-      var api = global_.BaseUrl + "/categories/" + key;
-      this.$http.get(api).then(
-        response => {
-          console.log(response);
-          this.blogTitles = response.body;
-          console.log(this.blogTitles);
-        },
-        function(err) {
-          console.log(err);
-        }
-      );
+      this.$api.category.getTitlesInCate(key).then(res => {
+        this.blogTitles = res.data;
+      });
     },
     handleClose(key, keyPath) {
       blogTitles = [];
     },
     listCategories() {
-      console.log(this.$api.category);
       this.$api.category.categories().then(res => {
         this.categories = res.data;
       });
