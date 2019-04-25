@@ -3,8 +3,8 @@
  * 请求拦截、响应拦截、错误统一处理
  */
 import axios from 'axios';
-import router from '../router';
 import storage from '../model/storage.js';
+import router from '../router';
 
 
 
@@ -81,12 +81,15 @@ instance.defaults.headers.common['X-Date'] = new Date().getTime().toString();
 
 
 instance.interceptors.request.use(function (config) {
-  // 在发送请求之前做些什么
-  var user = storage.get("user");
-  alert(JSON.stringify(user.refreshToken))
-  if (user != null)
-    config.headers['token'] = user.token
-    config.headers['refreshToken'] = user.refreshToken
+  // // 在发送请求之前做些什么
+  var token = storage.get("token");
+  var refreshToken = storage.get("refreshToken");
+
+  if (token != null) {
+
+    config.headers['token'] = token
+    config.headers['refreshToken'] = refreshToken
+  }
   return config;
 }, function (error) {
   // 对请求错误做些什么
@@ -99,6 +102,16 @@ instance.interceptors.response.use(
   // 请求成功
   res => {
     res.status === 200 ? Promise.resolve(res) : Promise.reject(res)
+
+    if (res.headers.token != null) {
+      storage.set("token", res.headers.token);
+
+    }
+
+    if (res.headers.refreshtoken != null) {
+      storage.set("refreshToken", res.headers.refreshtoken);
+    }
+
     return res
   },
   // 请求失败

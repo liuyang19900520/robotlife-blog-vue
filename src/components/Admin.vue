@@ -44,34 +44,13 @@ export default {
   data: { user: null },
   mounted: function() {
     this.$api.admin.adminIndex().then(response => {
+      console.log(response);
       if (response.data.ret != "0") {
         this.$router.push({
           path: "/signin"
         });
       }
     });
-
-    // var api = global_.BaseUrl + "/admin/index";
-    // this.$http.get(api).then(
-    //   response => {
-    //     // alert(JSON.stringify(response))
-    //     if (response.body.ret != "0") {
-    //       this.$router.push({
-    //         path: "/signin"
-    //       });
-    //     } else {
-    //       this.user = storage.get("user");
-    //       console.log("第一个user", this.user);
-    //       console.log("第一个user token", this.user.token);
-    //       console.log("response===========  user data", response.body.data);
-
-    //       storage.set("user", response.body.data);
-    //     }
-    //   },
-    //   function(err) {
-    //     alert("失败");
-    //   }
-    // );
   },
   computed: {
     key() {
