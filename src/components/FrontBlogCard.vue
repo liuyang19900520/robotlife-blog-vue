@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       pageNo: 1,
-      rows: 6,
+      rows: 3,
       tagTypes: ["", "success", "info", "warning", "danger"],
       blogs: [],
       pageTotal: ""

@@ -1,6 +1,10 @@
 <template>
   <div class="hello">
     <el-menu class="el-menu-demo" mode="horizontal">
+      <el-menu-item index="0">
+        <!--添加flushCom方法-->
+        <router-link to="/blogs" replace:true @click.native="flushCom">Flask 版本入口</router-link>
+      </el-menu-item>
       <el-menu-item index="1">
         <!--添加flushCom方法-->
         <router-link to="/blogs" replace:true @click.native="flushCom">Blog</router-link>

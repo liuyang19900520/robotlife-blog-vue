@@ -7,6 +7,7 @@ import FrontBlogDetail from '@/components/FrontBlogDetail'
 import Admin from '@/components/Admin'
 import AdminEditPanel from '@/components/AdminEditPanel'
 import AdminBlogs from '@/components/AdminBlogs'
+import AdminTempBlogs from '@/components/AdminTempBlogs'
 import Phone from '@/components/PhoneFrontError'
 
 Vue.use(Router)
@@ -36,6 +37,13 @@ export default new Router({
         name: 'AdminBlogs',
         components: {
           admin: AdminBlogs
+
+        }
+      }, {
+        path: '/admin/blogs/temp',
+        name: 'AdminTempBlogs',
+        components: {
+          admin: AdminTempBlogs
 
         }
       }, {

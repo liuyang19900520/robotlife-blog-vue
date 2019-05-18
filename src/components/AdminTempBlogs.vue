@@ -10,7 +10,7 @@
         <h6>{{blog.updateAt}}</h6>
       </td>
       <td>
-        <h6>delete</h6>
+        <h6>edit</h6>
       </td>
     </table>
 
@@ -44,9 +44,8 @@ export default {
   methods: {
     handleSelect() {},
     listBlogs(currentPage, topicId) {
-      this.$api.blog.blogs(this.pageNo, this.rows, topicId).then(res => {
-        this.blogs = res.data.data;
-        this.pageTotal = res.data.pagesTotal;
+      this.$api.blog.tempBlogs().then(res => {
+        this.blogs = res.data;
       });
     }
   },

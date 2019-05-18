@@ -22,10 +22,8 @@
     },
     mounted: function () {
       if (this._isMobile()) {
-        alert("手机端");
         this.$router.replace('/mobile/error');
       } else {
-        alert("pc端");
         this.$router.replace('/blogs');
       }
     }

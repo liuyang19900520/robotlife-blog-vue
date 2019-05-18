@@ -68,8 +68,7 @@ instance.defaults.headers.common['X-Date'] = new Date().getTime().toString();
 //     // 登录流程控制中，根据本地是否存在token判断用户的登录情况        
 //     // 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token        
 //     // 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码        
-//     // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。 
-//     alert(1111)
+//     // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
 //     // if (storage.get("user").token) { //判断token是否存在
 //     //   config.headers.post['token'] = storage.get("user").token; //将token设置成请求头
 //     // }

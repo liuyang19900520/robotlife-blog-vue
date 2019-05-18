@@ -24,7 +24,6 @@ export default {
   methods: {
     signIn() {
       this.$api.auth.signIn(this.username, this.password).then(response => {
-        alert(JSON.stringify(response.data.data))
         if (response.data.ret == "0") {
           storage.set("user", response.data.data);
           storage.set("token", response.data.data.token);
