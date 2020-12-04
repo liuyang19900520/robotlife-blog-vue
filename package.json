@@ -14,7 +14,7 @@
     "ajv": "^6.10.0",
     "axios": "^0.18.0",
     "element-ui": "^2.7.2",
-    "highlight.js": "^9.15.6",
+    "highlight.js": "^10.4.1",
     "libcipm": "^3.0.3",
     "mavon-editor": "^2.7.3",
     "node-gyp": "^3.8.0",
