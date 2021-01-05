@@ -12,7 +12,7 @@
   "dependencies": {
     "acorn": "^6.1.1",
     "ajv": "^6.10.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "element-ui": "^2.7.2",
     "highlight.js": "^9.15.6",
     "libcipm": "^3.0.3",
